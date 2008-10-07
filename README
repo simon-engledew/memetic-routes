@@ -1,13 +1,37 @@
 MemeticRoutes
 =============
 
-Introduction goes here.
+memetic_routes is a lightweight version of the metaprogramming function from historic_routes. It will automatically transfer a parameter from the params hash into a named route.
 
 
 Example
 =======
 
-Example goes here.
+On the results page there are two tabs which switch between data visualizations:
+
+Table View </results/_table_view.html.erb> and Heatmap View </results/_heat_map.html.erb>
+
+The visualization partials are rendered from a single page:
+
+</results.html.erb>
+
+which has a shared sidebar that posts to a named route using:
+
+form_tag search_url do
+
+The results route looks like this:
+
+map.search_url '/results/:visualization', :visualization => /table_view|heat_map/, :defaults => {:visualization => 'table_view'}, :remembers => :visualization
+
+When search_url is called the params[:visualization] is automatically merged into the options hash. On the heatmap view search_url will result in:
+
+/results/heat_map
+
+and on the table_view the search_url will result in:
+
+/results/table_view
+
+You can keep using this url to persist the value, without having to save it away in the users' sessions.
 
 
-Copyright (c) 2008 [name of plugin creator], released under the MIT license
+Copyright (c) 2008 Simon Engledew, released under the MIT license
