@@ -1,29 +1,31 @@
 MemeticRoutes
 =============
 
-memetic_routes is a lightweight version of the metaprogramming function from historic_routes. It will automatically transfer a parameter from the params hash into a named route.
+memetic_routes is a lightweight version of the metaprogramming function from historic_routes. It will automatically persist a parameter into a named route.
 
 
 Example
 =======
 
-On the results page there are two tabs which switch between data visualizations:
+There are two tabs which switch between data visualizations:
 
-Table View </results/_table_view.html.erb> and Heatmap View </results/_heat_map.html.erb>
+Table View: </results/_table_view.html.erb> and Heatmap View: </results/_heat_map.html.erb>
 
-The visualization partials are rendered from a single page:
+These partials are rendered from a single page:
 
 </results.html.erb>
 
 which has a shared sidebar that posts to a named route using:
 
-form_tag search_url do
+<% form_tag search_url do %>
 
-The results route looks like this:
+The /results route looks like this:
 
-map.search_url '/results/:visualization', :visualization => /table_view|heat_map/, :defaults => {:visualization => 'table_view'}, :remembers => :visualization
+map.search_url '/results/:visualization', :visualization => /table_view|heat_map/, :defaults => {:visualization => 'table_view'}, :remember => :visualization
 
-When search_url is called the params[:visualization] is automatically merged into the options hash. On the heatmap view search_url will result in:
+:remember states that when search_url is called, params[:visualization] is automatically merged into the url options hash.
+
+On the heatmap view search_url will result in:
 
 /results/heat_map
 
