@@ -21,7 +21,7 @@ which has a shared sidebar that posts to a named route using:
 
 The /results route looks like this:
 
-map.search_url '/results/:visualization', :visualization => /table_view|heat_map/, :defaults => {:visualization => 'table_view'}, :remember => :visualization
+map.search '/results/:visualization', :visualization => /table_view|heat_map/, :defaults => {:visualization => 'table_view'}, :remember => :visualization
 
 :remember states that when search_url is called, params[:visualization] is automatically merged into the url options hash.
 
